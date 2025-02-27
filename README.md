@@ -1,75 +1,85 @@
 # **Disease Prediction & Kidney X-ray Classification**  
-### *A Machine Learning & Deep Learning Project for Hackathon*  
+### *AI-Powered Healthcare Solution for Early Disease Detection*  
 
-## 📌 **Project Overview**  
-This project includes two AI-driven healthcare solutions:  
-1. **Disease Prediction:** Users enter symptoms, and the model predicts the most probable disease.  
-2. **CNN-based Kidney X-ray Classification:** A deep learning model classifies kidney X-ray images into four categories: *Normal, Cyst, Stone, Tumor*.  
+## 📌 **Problem Statement**  
+Healthcare is evolving, but early disease detection remains a challenge. Many people struggle to identify illnesses based on symptoms, and diagnosing kidney-related conditions from X-ray images requires specialized medical expertise.  
 
----
-
-## 🚀 **Features**  
-✔️ Predict diseases based on symptoms using machine learning.  
-✔️ Classify kidney X-ray images using a CNN model.  
-✔️ User-friendly and interactive interface.  
-✔️ Supports real-time X-ray image input for kidney disease detection.  
+### **Solution**  
+This project provides a **dual AI-powered approach**:  
+1. **Disease Prediction Model:** A machine learning model that predicts potential diseases based on user-reported symptoms.  
+2. **CNN-Based Kidney Disease Classification:** A deep learning model that analyzes X-ray images and classifies kidney conditions into four categories: *Normal, Cyst, Stone, Tumor*.  
 
 ---
 
-## 🛠 **Installation**  
+## 🚀 **How the Models Work**  
 
-### 1️⃣ **Clone the Repository**  
-```bash
-git clone https://github.com/your-username/disease-kidney-classification.git
-cd disease-kidney-classification
-```
+### **1️⃣ Disease Prediction Model (Machine Learning)**  
+#### **🛠 What’s Used?**
+- **Dataset:** A Kaggle dataset containing symptoms of multiple diseases.  
+- **Techniques:** Decision Tree Classifier, Random Forest, SVM, Logistic Regression.  
+- **Preprocessing:**  
+  ✅ Converted categorical symptoms into numerical values.  
+  ✅ Handled missing data by filling NaN values.  
+  ✅ Dropped unnecessary symptom columns to optimize the model.  
+  ✅ Randomized dataset to improve model generalization.  
+- **Model Training:**  
+  ✅ Used `DecisionTreeClassifier` to classify diseases.  
+  ✅ Applied `RandomForestClassifier` and `SVM` to improve accuracy.  
+  ✅ Evaluated with **accuracy score and cross-validation**.  
+- **Prediction:**  
+  ✅ Users enter symptoms in **plain text** (e.g., *fever, cough, headache*).  
+  ✅ The model maps these symptoms to potential diseases and returns the best match.  
 
-### 2️⃣ **Install Dependencies**  
-Make sure you have Python installed (Recommended: Python 3.8+).  
-Run the following command to install required libraries:  
-```bash
-pip install -r requirements.txt
-```
-
-### 3️⃣ **Prepare Dataset**  
-- For disease prediction, ensure `dataset.csv` is placed in the project directory.  
-- For kidney disease classification, prepare your dataset with X-ray images and organize them into folders (`Normal, Cyst, Stone, Tumor`).  
-
----
-
-## 🔥 **Usage**  
-
-### **1. Disease Prediction (Based on Symptoms)**  
+#### **📌 How to Use?**  
 Run the script:  
 ```bash
 python disease_prediction.py
 ```
-Then, enter symptoms when prompted (comma-separated), e.g.,  
+Then, enter symptoms as a **comma-separated** list:  
 ```
 Enter symptoms: fever, cough, headache
 ```
-The system will predict the disease based on entered symptoms.  
+The model will predict the most likely disease.  
 
 ---
 
-### **2. Kidney Disease X-ray Classification**  
-Run the CNN model:  
+### **2️⃣ CNN-Based Kidney Disease Classification (Deep Learning)**  
+#### **🛠 What’s Used?**  
+- **Dataset:** Kidney X-ray images with 4 categories:  
+  ✅ **Normal**  
+  ✅ **Cyst**  
+  ✅ **Stone**  
+  ✅ **Tumor**  
+- **Model Architecture (Convolutional Neural Network - CNN)**  
+  ✅ Input Layer (Image processing)  
+  ✅ 3 Convolutional Layers with ReLU Activation  
+  ✅ Max Pooling for Feature Extraction  
+  ✅ Fully Connected Layers for Classification  
+  ✅ Softmax Activation for Final Prediction  
+- **Training Strategy**  
+  ✅ Data Augmentation to handle overfitting  
+  ✅ Image Rescaling for uniform input  
+  ✅ Categorical Cross-Entropy Loss for multi-class classification  
+  ✅ Adam Optimizer for faster convergence  
+
+#### **📌 How to Use?**  
+Run the script and provide an X-ray image path:  
 ```bash
-python kidney_classification.py --image "path/to/your/image.jpg"
+python kidney_classification.py --image "path/to/image.jpg"
 ```
-The system will analyze the X-ray and predict whether the kidney condition is:  
-✅ *Normal*  
-⚠️ *Cyst*  
-⚠️ *Stone*  
-⚠️ *Tumor*  
+The system will analyze the image and predict:  
+✅ **Normal**  
+⚠️ **Cyst**  
+⚠️ **Stone**  
+⚠️ **Tumor**  
 
 ---
 
 ## 📂 **Project Structure**  
 ```
 📦 disease-kidney-classification
- ┣ 📂 dataset/                # CSV and image datasets
- ┣ 📂 models/                 # Trained machine learning models
+ ┣ 📂 dataset/                # CSV and X-ray image datasets
+ ┣ 📂 models/                 # Trained ML and CNN models
  ┣ 📜 disease_prediction.py    # Symptom-based disease prediction
  ┣ 📜 kidney_classification.py # CNN-based kidney X-ray classification
  ┣ 📜 requirements.txt         # Required dependencies
@@ -78,24 +88,20 @@ The system will analyze the X-ray and predict whether the kidney condition is:
 
 ---
 
-## 🔬 **Technologies Used**  
-- **Machine Learning** (Decision Tree, Random Forest, SVM)  
-- **Deep Learning** (Convolutional Neural Networks)  
-- **Python** (TensorFlow, Keras, OpenCV, Scikit-learn, Pandas)  
+## 💡 **Technologies & Libraries Used**  
+✔ **Machine Learning** - Decision Trees, Random Forest, SVM, Logistic Regression  
+✔ **Deep Learning** - Convolutional Neural Networks (CNN)  
+✔ **Python Libraries** - TensorFlow, Keras, Pandas, Scikit-learn, OpenCV, NumPy  
+✔ **Metrics Used** - Accuracy Score, Cross-Validation, Precision, Recall  
 
 ---
 
-## 🎯 **Future Improvements**  
-🔹 Deploy the model as a web app using Flask or FastAPI.  
-🔹 Enhance accuracy with more training data.  
-🔹 Integrate a chatbot for symptom-based disease guidance.  
+## 🎯 **Future Enhancements**  
+🚀 Deploy as a **Web App** (Flask / FastAPI) for real-time disease prediction.  
+🚀 Integrate a **Chatbot** for an interactive AI healthcare assistant.  
+🚀 Improve CNN performance with **transfer learning (ResNet / VGG16)**.  
 
 ---
 
 ## 🤝 **Contributing**  
-Contributions are welcome! Fork this repository, make changes, and submit a pull request.  
-
----
-
-## 📜 **License**  
-This project is open-source under the **MIT License**.  
+Contributions are welcome! Fork this repository, make improvements, and submit a pull request.  
