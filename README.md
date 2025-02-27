@@ -3,6 +3,7 @@
 
 ## 📌 **Problem Statement**  
 Healthcare is evolving, but early disease detection remains a challenge. Many people struggle to identify illnesses based on symptoms, and diagnosing kidney-related conditions from X-ray images requires specialized medical expertise.  
+![27 02 2025_20 58 55_REC](https://github.com/user-attachments/assets/134c92f5-b0e1-40ee-8b82-32c9eb4c75ce)
 
 ### **Solution**  
 This project provides a **dual AI-powered approach**:  
