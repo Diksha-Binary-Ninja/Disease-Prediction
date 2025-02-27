@@ -42,20 +42,97 @@ def predict_disease(symptoms):
     predicted_disease = [k for k, v in disease_dict.items() if v == prediction[0]]
     return predicted_disease[0] if predicted_disease else "Unknown Disease"
 
-# CNN Model for Kidney X-ray Classification
-model = load_model('kidney_cnn_model.h5')  # Load pre-trained model
+# Dataset Path
+dataset_path = r"C:\Users\nkoni\Desktop\Kidney_Dataset"
+
+# Data Augmentation & Preprocessing
+train_datagen = ImageDataGenerator(rescale=1./255, 
+                                   rotation_range=20, 
+                                   zoom_range=0.2, 
+                                   shear_range=0.2, 
+                                   horizontal_flip=True, 
+                                   validation_split=0.2)
+
+# Load Training Data
+train_generator = train_datagen.flow_from_directory(
+    dataset_path, 
+    target_size=(150, 150), 
+    batch_size=32, 
+    class_mode='categorical', 
+    subset='training')
+
+# Load Validation Data
+val_generator = train_datagen.flow_from_directory(
+    dataset_path, 
+    target_size=(150, 150), 
+    batch_size=32, 
+    class_mode='categorical', 
+    subset='validation')
+
+# Get Class Labels
+class_labels = list(train_generator.class_indices.keys())
+print("Class Labels:", class_labels)
+
+# Define CNN Model
+model = Sequential([
+    Conv2D(32, (3,3), activation='relu', input_shape=(150, 150, 3)),
+    MaxPooling2D(2,2),
+    
+    Conv2D(64, (3,3), activation='relu'),
+    MaxPooling2D(2,2),
+
+    Conv2D(128, (3,3), activation='relu'),
+    MaxPooling2D(2,2),
+    
+    Flatten(),
+    Dense(128, activation='relu'),
+    Dropout(0.5),
+    Dense(4, activation='softmax')  # 4 classes: Normal, Cyst, Stone, Tumor
+])
+
+# Compile the Model
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+# Train the Model
+history = model.fit(train_generator, epochs=20, validation_data=val_generator)
+
+# Save Model for Future Use
+model.save('kidney_cnn_model.h5')
+print("Model Saved Successfully!")
+
+# Plot Accuracy and Loss
+plt.figure(figsize=(12, 4))
+
+plt.subplot(1, 2, 1)
+plt.plot(history.history['accuracy'], label='Train Accuracy')
+plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
+plt.title('Model Accuracy')
+plt.xlabel('Epochs')
+plt.ylabel('Accuracy')
+plt.legend()
+
+plt.subplot(1, 2, 2)
+plt.plot(history.history['loss'], label='Train Loss')
+plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.title('Model Loss')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.legend()
+
+plt.show()
+
+# Load Trained Model
+model = tf.keras.models.load_model('kidney_cnn_model.h5')
+
 def predict_kidney_disease(img_path):
     img = image.load_img(img_path, target_size=(150, 150))
     img_array = image.img_to_array(img) / 255.0
     img_array = np.expand_dims(img_array, axis=0)
+    
     prediction = model.predict(img_array)
-    classes = ['Normal', 'Cyst', 'Stone', 'Tumor']
-    return classes[np.argmax(prediction)]
+    return class_labels[np.argmax(prediction)]
 
-# Example Usage
-user_symptoms = ["fever", "headache", "nausea"]
-print("Predicted Disease:", predict_disease(user_symptoms))
-
-# Example Kidney X-ray Prediction
-image_path = "C:\Users\nkoni\Desktop\kidney_xray.jpg"
+# Example Prediction
+image_path = r"C:\Users\nkoni\Desktop\kidney_xray.jpg"
 print("Kidney X-ray Prediction:", predict_kidney_disease(image_path))
+
