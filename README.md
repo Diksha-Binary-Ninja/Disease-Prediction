@@ -82,7 +82,7 @@ The system will analyze the image and predict:
 ⚠️ **Tumor**  
 
 ---
-
+```
 ## 📂 **Project Structure**  
 📦 disease-kidney-classification
  ┣ 📂 dataset/                # CSV and X-ray image datasets
