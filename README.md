@@ -99,7 +99,3 @@ Contributions are welcome! Fork this repository, make changes, and submit a pull
 
 ## 📜 **License**  
 This project is open-source under the **MIT License**.  
-
----
-
-This **README.md** will be perfect for your **GitHub hackathon project**! Let me know if you need any modifications. 🚀🔥
