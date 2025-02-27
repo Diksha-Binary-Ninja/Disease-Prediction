@@ -45,6 +45,12 @@ The model will predict the most likely disease.
 ---
 
 ### **2️⃣ CNN-Based Kidney Disease Classification (Deep Learning)**  
+
+### Skin Disease Detection
+This code provides an **AI-driven skin disease detection system** that captures an image of the affected skin area and analyzes it using **deep learning**. The system utilizes a **Convolutional Neural Network (CNN)** trained on dermatological image datasets to identify whether the captured image shows signs of a **skin disease or normal skin**. By preprocessing the image and passing it through the trained model, it classifies the condition and provides instant feedback. This solution helps in **early detection of skin disorders**, allowing users to seek medical attention promptly. With further enhancements, the model can classify specific skin diseases such as **eczema, psoriasis, melanoma, and acne**, making it a valuable tool for **dermatological screening and telemedicine applications**. 🚀
+![27 02 2025_21 05 01_REC](https://github.com/user-attachments/assets/8e0782e5-8006-4b02-aae1-144a888b25bf)
+
+### Kidney Disease Detection
 #### **🛠 What’s Used?**  
 ![6 - Copy (2)](https://github.com/user-attachments/assets/953b86ed-8c47-487b-a674-be06c0f285a7)
 - **Dataset:** Kidney X-ray images with 4 categories:  
@@ -76,12 +82,8 @@ The system will analyze the image and predict:
 ⚠️ **Tumor**  
 
 ---
-ADDITIONALLY,
-This code provides an **AI-driven skin disease detection system** that captures an image of the affected skin area and analyzes it using **deep learning**. The system utilizes a **Convolutional Neural Network (CNN)** trained on dermatological image datasets to identify whether the captured image shows signs of a **skin disease or normal skin**. By preprocessing the image and passing it through the trained model, it classifies the condition and provides instant feedback. This solution helps in **early detection of skin disorders**, allowing users to seek medical attention promptly. With further enhancements, the model can classify specific skin diseases such as **eczema, psoriasis, melanoma, and acne**, making it a valuable tool for **dermatological screening and telemedicine applications**. 🚀
-## 📂 **Project Structure**  
-![27 02 2025_21 05 01_REC](https://github.com/user-attachments/assets/8e0782e5-8006-4b02-aae1-144a888b25bf)
 
-```
+## 📂 **Project Structure**  
 📦 disease-kidney-classification
  ┣ 📂 dataset/                # CSV and X-ray image datasets
  ┣ 📂 models/                 # Trained ML and CNN models
